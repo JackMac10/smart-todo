@@ -20,6 +20,8 @@ The following steps are only for _one_ of the group members to perform.
   - password: `labber` 
   - database: `midterm`
 3. Install dependencies: `npm i`
+   -->> NEW : `npm install express-session`
+   -->> NEW : `npm install bcrypt`
 4. Fix to binaries for sass: `npm rebuild node-sass`
 5. Reset database: `npm run db:reset`
   - Check the db folder to see what gets created and seeded in the SDB

@@ -5,6 +5,7 @@ require('dotenv').config();
 const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
+const session = require('express-session');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -26,11 +27,26 @@ app.use(
 );
 app.use(express.static('public'));
 
+// Session middleware
+app.use(session({
+   // We can change this to a more secure secret later <---
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: true
+}));
+
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const userApiRoutes = require('./routes/users-api');
 const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
+// New route for login
+const loginRoutes = require('./routes/login');
+// New route for signup
+const signupRoutes = require('./routes/signup');
+// New route for main-page
+const mainPageRoutes = require('./routes/main-page');
+
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -38,6 +54,12 @@ const usersRoutes = require('./routes/users');
 app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
+ // Mount login route
+app.use('/login', loginRoutes);
+// Mount signup route
+app.use('/signup', signupRoutes);
+// Mount main-page route
+app.use('/main-page', mainPageRoutes);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
