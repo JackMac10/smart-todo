@@ -1,0 +1,23 @@
+-- Users table seeds here (Example)
+INSERT INTO notes (user_id, note, category) VALUES (2,'to watch movie RED', 'Watch');
+INSERT INTO notes (user_id, note, category) VALUES (1,'to buy spoon', 'Buy');
+INSERT INTO notes (user_id, note, category) VALUES (2, 'to watch movie RED', 'Watch');
+INSERT INTO notes (user_id, note, category) VALUES (1, 'to buy spoon', 'Buy');
+INSERT INTO notes (user_id, note, category) VALUES (2, 'to read "Harry Potter"', 'Read');
+INSERT INTO notes (user_id, note, category) VALUES (1, 'to eat pizza', 'Eat');
+INSERT INTO notes (user_id, note, category) VALUES (2, 'to watch documentary on climate change', 'Watch');
+INSERT INTO notes (user_id, note, category) VALUES (1, 'to buy groceries', 'Buy');
+INSERT INTO notes (user_id, note, category) VALUES (2, 'to read "The Great Gatsby"', 'Read');
+INSERT INTO notes (user_id, note, category) VALUES (1, 'to eat sushi', 'Eat');
+INSERT INTO notes (user_id, note, category) VALUES (3, 'to watch TED talks', 'Watch');
+INSERT INTO notes (user_id, note, category) VALUES (1, 'to buy new shoes', 'Buy');
+INSERT INTO notes (user_id, note, category) VALUES (2, 'to read "To Kill a Mockingbird"', 'Read');
+INSERT INTO notes (user_id, note, category) VALUES (3, 'to eat salad', 'Eat');
+INSERT INTO notes (user_id, note, category) VALUES (2, 'to watch cooking show', 'Watch');
+INSERT INTO notes (user_id, note, category) VALUES (1, 'to buy birthday present', 'Buy');
+INSERT INTO notes (user_id, note, category) VALUES (3, 'to read "1984"', 'Read');
+INSERT INTO notes (user_id, note, category) VALUES (1, 'to eat ice cream', 'Eat');
+INSERT INTO notes (user_id, note, category) VALUES (2, 'to watch classic movies', 'Watch');
+INSERT INTO notes (user_id, note, category) VALUES (3, 'to buy new book', 'Buy');
+INSERT INTO notes (user_id, note, category) VALUES (3, 'to read "The Catcher in the Rye"', 'Read');
+INSERT INTO notes (user_id, note, category) VALUES (1, 'to eat burgers', 'Eat');

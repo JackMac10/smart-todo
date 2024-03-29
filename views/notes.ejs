@@ -1,0 +1,87 @@
+<!-- notes.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Notes</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+  <!-- <link rel="stylesheet" href="/vendor/border-box.css" /> -->
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="stylesheet" href="/styles/layout.css" />
+
+  <!-- Link to the separated CSS file -->
+  <link rel="stylesheet" href="/styles/myStyles.css" />
+
+  <script src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="/scripts/app.js"></script>
+
+
+</head>
+
+<body>
+  <header class="page-header">
+    <!-- Display user's name in the top right corner -->
+    <div class="user-info">
+      Welcome, <%= email %> <!-- Display user's name here -->
+    </div>
+  </header>
+  <main>
+
+
+    <div class="card-body">
+      <div class="add-note">
+        Would you like to add a new note?
+      </div>
+      <form action="/notes/" method="POST">
+        <input type="text" id="inputField" name="text" placeholder="Enter your task">
+        <br>
+        <button type="submit">Save</button>
+      </form>
+    </div>
+
+
+
+    <div class="table-container">
+
+      <table>
+
+        <tr>
+          <th>Category</th>
+          <th>Note</th>
+        </tr>
+        <% let currentCategory=null; %>
+          <% notes.reverse().forEach(note=> { %>
+            <% if (note.category !==currentCategory) { %>
+              <% if (currentCategory !==null) { %>
+              </tbody>
+               <tbody>
+                 <% } %>
+                  <tr class="category-row">
+                    <td colspan="2"><strong>
+                     <%= note.category %>
+                       </strong></td>
+                    </tr>
+                    <% currentCategory=note.category; %>
+                    <% } %>
+                   <tr>
+                   <td>
+                 <%= note.note %>
+                </td>
+               <td>
+             <%= note.category %>
+            </td>
+          </tr>
+        <% }); %>
+      </table>
+
+
+    </div>
+  </main>
+</body>
+
+</html>
