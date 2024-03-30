@@ -9,6 +9,7 @@
 const express = require('express');
 const router = express.Router();
 const notesQueries = require('../db/queries/notes');
+const { buildNote } = require('../public/scripts/helpers')
 
 // CRUD
 // Create - POST
@@ -25,7 +26,8 @@ router.post('/', (req, res) => {
       .json({ message: 'All properties must be provided to create a note' });
   }
 
-  const newNote = { user_id, content };
+  const newNote = buildNote(userId, content);
+
   notesQueries
     .create(newNote)
     .then((note) => {
