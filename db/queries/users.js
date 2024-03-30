@@ -30,13 +30,11 @@ const getUserByEmail = (email) => {
 
 const getUserNotes = (id) => {
   const queryString = 'SELECT * FROM notes WHERE user_id = $1;'
-  
+
   return db.query(queryString, [id])
     .then(result => result.rows)
     .catch(err => console.log(err));
 }
-
-
 
 const getUserById = (id) => {
   const queryText = 'SELECT * FROM users WHERE id = $1';

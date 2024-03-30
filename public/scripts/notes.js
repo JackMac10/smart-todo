@@ -5,15 +5,45 @@ $(() => {
     const form = $(this);
     const input = $('#new-note > input');
     const body = input.val()
-    console.log(body)
-    // $.ajax({
-    //   type: form.attr('method'),
-    //   url: form.attr('action'),
-    //   data: form.serialize()
-    // }).done(function(data) {
-    //   // Optionally alert the user of success here...
-    // }).fail(function(data) {
-    //   // Optionally alert the user of an error here...
-    // });
+
+    $.ajax({
+      method: 'POST',
+      url: `/api/notes`,
+      data: body
+    }).done(function(data) {
+
+    }).fail(function(data) {
+      // TODO: Handle error
+    });
   });
+
+  const $notesContainer = $('#notes-container');
+  const userId = $notesContainer.data('userId');
+
+  const noteHtml = (note) => {
+    const { id, content } = note;
+
+    return `
+      <article class='note' data-note-id=${id}>
+        <p>${content}</p>
+      </article>
+    `
+  }
+
+  const loadNotes = () => {
+    $.ajax({
+      method: 'GET',
+      url: `/api/notes?user_id=${userId}`,
+    }).done(function(data) {
+      $notesContainer.empty()
+
+      for (const note of data.notes) {
+        $notesContainer.append(noteHtml(note));
+      }
+    }).fail(function(data) {
+      // TODO: Handle error
+    });
+  }
+
+  loadNotes();
 });

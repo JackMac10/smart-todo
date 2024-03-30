@@ -3,19 +3,13 @@ const router = express.Router();
 const { getUserNotes } = require('../db/queries/users');
 
 router.get('/', (req, res) => {
-  const user  = req.session.user;
-  const email = user.email;
+  const user = req.session.user;
 
-  getUserNotes(user.id)
-    .then(notes => {
-      console.log(notes)
-      res.render('notes', { notes, email });
-    })
-    .catch(err => {
-      res
-        .status(500)
-        .json({ error: err.message });
-    });
+  if (!user) {
+    // redirect to login page
+  }
+
+  res.render('notes', { user });
 });
 
 // GET request to render the login form

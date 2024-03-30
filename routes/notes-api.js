@@ -43,9 +43,10 @@ router.get('/', (req, res) => {
   let query = notesQueries.getAll();
 
   const { user_id } = req.query;
-  // if (user_id) {
-  //   query = notesQueries.getByUserId(user_id);
-  // }
+
+  if (user_id) {
+    query = notesQueries.getByUserId(user_id);
+  }
 
   query
     .then((notes) => {
