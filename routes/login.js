@@ -30,9 +30,8 @@ router.post('/', (req, res) => {
           // Set user session
           req.session.user = user;
           console.log("USER id: ", user.id)
-          const userId = user.id;
-          // Redirect to main-page after successful login
-          res.redirect(`/notes/${userId}`);
+          // Redirect to the main page after successful login
+          res.redirect(`/notes`);
         })
         .catch(error => {
           console.error('Error comparing passwords:', error);

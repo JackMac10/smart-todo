@@ -18,9 +18,7 @@
   <link rel="stylesheet" href="/styles/myStyles.css" />
 
   <script src="/vendor/jquery-3.0.0.js"></script>
-  <script defer src="/scripts/app.js"></script>
-
-
+  <script defer src="/scripts/note.js"></script>
 </head>
 
 <body>
@@ -31,57 +29,23 @@
     </div>
   </header>
   <main>
-
-
     <div class="card-body">
       <div class="add-note">
         Would you like to add a new note?
       </div>
-      <form action="/notes/" method="POST">
-        <input type="text" id="inputField" name="text" placeholder="Enter your task">
+
+      <form id="new-note" action="/notes/" method="POST">
+        <input type="text" name="text" placeholder="Enter your note">
         <br>
         <button type="submit">Save</button>
       </form>
-    </div>
 
+      <hr>
 
-
-    <div class="table-container">
-
-      <table>
-
-        <tr>
-          <th>Category</th>
-          <th>Note</th>
-        </tr>
-        <% let currentCategory=null; %>
-          <% notes.reverse().forEach(note=> { %>
-            <% if (note.category !==currentCategory) { %>
-              <% if (currentCategory !==null) { %>
-              </tbody>
-               <tbody>
-                 <% } %>
-                  <tr class="category-row">
-                    <td colspan="2"><strong>
-                     <%= note.category %>
-                       </strong></td>
-                    </tr>
-                    <% currentCategory=note.category; %>
-                    <% } %>
-                   <tr>
-                   <td>
-                 <%= note.note %>
-                </td>
-               <td>
-             <%= note.category %>
-            </td>
-          </tr>
-        <% }); %>
-      </table>
-
-
+      <% notes.forEach(note=> { %>
+        <%= note.content %>
+      <% }); %>
     </div>
   </main>
 </body>
-
 </html>
