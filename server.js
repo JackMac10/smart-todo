@@ -49,6 +49,8 @@ const signupRoutes = require('./routes/signup');
 // New route for notes
 const notesApiRoutes = require('./routes/notes-api');
 const notesRoutes = require('./routes/notes');
+//New route for categories
+const categoriesApiRoutes = require('./routes/categories-api');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -65,6 +67,9 @@ app.use('/signup', signupRoutes);
 // Mount notes route
 app.use('/api/notes', notesApiRoutes);
 app.use('/notes', notesRoutes);
+
+// Mount categories routes
+app.use('/api/categories', categoriesApiRoutes);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
