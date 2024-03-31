@@ -45,5 +45,17 @@ $(() => {
     });
   }
 
-  loadNotes();
+  const loadCategories = () => {
+    $.ajax({
+      method: 'GET',
+      url: `/api/categories`,
+    }).done(function(data) {
+      categories = data.categories;
+      loadNotes();
+    }).fail(function(data) {
+      // TODO: Handle error
+    });
+  }
+
+  loadCategories();
 });

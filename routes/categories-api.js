@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
   let query = categoriesQueries.getAll();
 
   query
-    .then((notes) => {
+    .then((categories) => {
       res.status(201).json({ message: 'Here all categories!', categories });
     })
     .catch((err) => {
