@@ -19,7 +19,7 @@ $(() => {
         category = categories.find(category => category.name === 'Restaurants');
         break;
       case (content.includes('Buy')) || (content.includes('buy')):
-        category = categories.find(category => category.name === 'Product');
+        category = categories.find(category => category.name === 'Products');
         break;
       default:
         category = categories.find(category => category.name === 'Other');
@@ -42,20 +42,31 @@ $(() => {
       url: `/api/notes`,
       data: { note: newNote }
     }).done(function(data) {
-      $notesContainer.append(noteHtml(data.note));
+      categoryContainer(data.note.category_id).append(noteHtml(data.note));
     }).fail(function(data) {
       // TODO: Handle error
     });
   });
 
+  const categoryHtml = (category) => {
+    const { id, name } = category;
+
+    return `
+      <div class='category-container' data-category-id=${id}>
+        <strong>${name}</strong>
+        <hr>
+      </div>
+    `
+  }
+
   const noteHtml = (note) => {
     const { id, content } = note;
 
-    return `
-      <article class='note' data-note-id=${id}>
-        <p>${content}</p>
-      </article>
-    `
+    return `<p class='note' data-note-id=${id}>${content}</p>`
+  }
+
+  const categoryContainer = (categoryId) => {
+    return $(`[data-category-id=${categoryId}]`);
   }
 
   const loadNotes = () => {
@@ -63,10 +74,8 @@ $(() => {
       method: 'GET',
       url: `/api/notes?user_id=${userId}`,
     }).done(function(data) {
-      $notesContainer.empty()
-
       for (const note of data.notes) {
-        $notesContainer.append(noteHtml(note));
+        categoryContainer(note.category_id).append(noteHtml(note));
       }
     }).fail(function(data) {
       // TODO: Handle error
@@ -79,6 +88,13 @@ $(() => {
       url: `/api/categories`,
     }).done(function(data) {
       categories = data.categories;
+
+      $notesContainer.empty();
+
+      for (const category of categories) {
+        $notesContainer.append(categoryHtml(category));
+      }
+
       loadNotes();
     }).fail(function(data) {
       // TODO: Handle error
