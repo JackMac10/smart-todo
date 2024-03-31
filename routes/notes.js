@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
   const user = req.session.user;
 
   if (!user) {
-    // redirect to login page
+    res.redirect('/login');
   }
 
   res.render('notes', { user });

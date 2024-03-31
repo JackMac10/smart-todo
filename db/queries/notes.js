@@ -2,7 +2,7 @@ const db = require('../connection');
 
 // Function to add a new note to the database
 const create = (note) => {
-  const queryText = 'INSERT INTO notes (user_id, note, category) VALUES ($1, $2, $3) RETURNING *';
+  const queryText = 'INSERT INTO notes (user_id, content, category_id) VALUES ($1, $2, $3) RETURNING *';
   const values = [note.userId, note.content, note.categoryId];
 
   return db.query(queryText, values).then(result => result.rows[0]);

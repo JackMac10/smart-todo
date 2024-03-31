@@ -9,27 +9,26 @@
 const express = require('express');
 const router = express.Router();
 const notesQueries = require('../db/queries/notes');
-const { buildNote } = require('../public/scripts/helpers')
 
 // CRUD
 // Create - POST
 router.post('/', (req, res) => {
-  const { user_id } = req.session;
-  if (!user_id) {
+  const { user } = req.session;
+
+  if (!user) {
     return res.status(401).json({ message: 'User is not logged in' });
   }
 
-  const { content } = req.body;
-  if (!content) {
+  const { note } = req.body;
+
+  if (!note) {
     return res
       .status(400)
       .json({ message: 'All properties must be provided to create a note' });
   }
-
-  const newNote = buildNote(userId, content);
-
+console.log("NOTESSSS", note);
   notesQueries
-    .create(newNote)
+    .create(note)
     .then((note) => {
       res.status(201).json({ message: 'Note created!', note });
     })
