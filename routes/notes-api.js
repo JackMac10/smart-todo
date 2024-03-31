@@ -26,7 +26,7 @@ router.post('/', (req, res) => {
       .status(400)
       .json({ message: 'All properties must be provided to create a note' });
   }
-console.log("NOTESSSS", note);
+
   notesQueries
     .create(note)
     .then((note) => {

@@ -61,7 +61,12 @@ $(() => {
   const noteHtml = (note) => {
     const { id, content } = note;
 
-    return `<p class='note' data-note-id=${id}>${content}</p>`
+    return `
+      <div>
+        <p class='note' data-note-id=${id}>${content}</p>
+        <a href="/notes/${id}/edit">Edit</a>
+      </div
+    `
   }
 
   const categoryContainer = (categoryId) => {

@@ -18,4 +18,9 @@ const getAll = () => {
   return db.query('SELECT * FROM notes;').then((data) => data.rows);
 };
 
-module.exports = { getAll, getByUserId, create };
+const getNote = (noteId) => {
+  return db.query('SELECT * FROM notes WHERE notes.id = $1;', [noteId])
+    .then((data) => data.rows[0]);
+}
+
+module.exports = { getAll, getNote, getByUserId, create };
