@@ -54,7 +54,6 @@ $(() => {
     return `
       <div class='category-container' data-category-id=${id}>
         <strong>${name}</strong>
-        <hr>
       </div>
     `
   }

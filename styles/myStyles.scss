@@ -60,35 +60,9 @@ p {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Table */
-
-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
+#notes-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  grid-gap: 20px;
+  padding: 20px;
 }
-
-th, td {
-  padding: 12px;
-  text-align: left;
-}
-
-th {
-  background-color: #f2f2f2;
-}
-
-.category-row td {
-  border-top: 2px solid #000;
-  border-bottom: 2px solid #000;
-}
-
-.category-row td:first-child {
-  padding-top: 20px; /* Add extra padding for category rows */
-}
-
-
-td:last-child {
-  font-weight: bold;
-}
-
-
