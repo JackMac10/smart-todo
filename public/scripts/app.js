@@ -2,7 +2,7 @@
 
 // Add event listener for login button
 $('#login-btn').on('click', function() {
-  window.location.href = '/login'; // Redirect to the login page
+  window.location.href = 'sessions/login'; // Redirect to the login page
 });
 
 // Add event listener for signup button

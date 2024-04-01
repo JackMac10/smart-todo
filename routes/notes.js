@@ -6,7 +6,8 @@ router.get('/', (req, res) => {
   const user = req.session.user;
 
   if (!user) {
-    res.redirect('/login');
+    res.redirect('sessions/login');
+    return;
   }
 
   res.render('notes', { user });

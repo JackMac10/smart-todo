@@ -22,14 +22,13 @@ router.post('/', (req, res) => {
         return res.status(400).render('signup', { error: 'Email already registered' });
       }
 
-
       // Add user with hashed password
       return addUser(name, email, password)
         .then(newUser => {
           // Set user session
-          req.session.userId = newUser.id;
+          req.session.user = newUser;
           // Redirect to homepage after successful signup
-          res.redirect('/');
+          res.redirect('/notes');
         });
     })
   .catch(error => {

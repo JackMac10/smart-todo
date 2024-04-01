@@ -21,7 +21,7 @@ router.post('/', (req, res) => {
 
   const { note } = req.body;
 
-  if (!note) {
+  if ((!note) || (note === '')) {
     return res
       .status(400)
       .json({ message: 'All properties must be provided to create a note' });

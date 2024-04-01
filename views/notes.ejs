@@ -27,7 +27,12 @@
     <div class="user-info">
       Welcome, <%= user.email %> <!-- Display user's name here -->
     </div>
+    <!-- Logout -->
+    <form action="/sessions/logout" method="post">
+      <input type="submit" value="Logout"/>
+    </form>
   </header>
+
   <main>
     <div class="card-body">
       <div class="add-note">
@@ -35,7 +40,7 @@
       </div>
 
       <form id="new-note" action="/notes/" method="POST">
-        <input type="text" name="text" placeholder="Enter your note">
+        <input type="text" name="text" placeholder="Enter your note" required>
         <br>
         <button type="submit" class="large">Save</button>
       </form>

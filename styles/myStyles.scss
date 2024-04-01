@@ -9,14 +9,22 @@ body {
 }
 
 .page-header {
-  background-color: #f2f2f2;
-  padding: 20px;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
+  // justify-content: flex-start;
+  align-items: stretch;
+  border: #007bff;
+  border-style: dotted;
+  background-color: inherit; //#f2f2f2
+  font-weight: bold;
+  padding: 20px;
+
+
 }
 
 .user-info {
-  text-align: right;
+  text-align: left;
 }
 
 h1 {
@@ -54,15 +62,27 @@ p {
   font-size: 1.2em;
   margin: 20px 0;
   padding: 10px;
-  background-color: #f2f2f2;
+  background-color: inherit; //#f2f2f2
   border-radius: 5px;
-  text-align: center;
+  text-align: left;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 #notes-container {
+  // display: flex;
+  // flex-direction: row;
   display: grid;
+  // -ms-flex-item-align: auto auto auto auto auto;
+  // flex-wrap: nowrap;
+  // flex-grow: inherit;
   grid-template-columns: auto auto auto auto auto;
-  grid-gap: 20px;
+  grid-gap: 50px;
   padding: 20px;
+}
+
+#new-note {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
 }

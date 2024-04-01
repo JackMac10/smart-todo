@@ -41,7 +41,7 @@ const userApiRoutes = require('./routes/users-api');
 const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
 // New route for login
-const loginRoutes = require('./routes/login');
+const sessionRoutes = require('./routes/sessions');
 // New route for signup
 const signupRoutes = require('./routes/signup');
 // New route for main-page
@@ -59,7 +59,7 @@ app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
  // Mount login route
-app.use('/login', loginRoutes);
+app.use('/sessions', sessionRoutes);
 // Mount signup route
 app.use('/signup', signupRoutes);
 // Mount main-page route
