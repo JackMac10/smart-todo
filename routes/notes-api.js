@@ -41,15 +41,16 @@ router.post('/', (req, res) => {
 
 // Read all - GET
 router.get('/', (req, res) => {
-  let query = notesQueries.getAll();
-
+  let dbQuery = undefined;
   const { user_id } = req.query;
 
   if (user_id) {
-    query = notesQueries.getByUserId(user_id);
+    dbQuery = notesQueries.getByUserId(user_id);
+  } else {
+    dbQuery = notesQueries.getAll();
   }
 
-  query
+  dbQuery
     .then((notes) => {
       res.status(201).json({ message: 'Here all notes!', notes });
     })
