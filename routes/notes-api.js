@@ -13,21 +13,22 @@ const notesQueries = require('../db/queries/notes');
 // CRUD
 // Create - POST
 router.post('/', (req, res) => {
-  const { user_id } = req.session;
-  if (!user_id) {
+  const { user } = req.session;
+
+  if (!user) {
     return res.status(401).json({ message: 'User is not logged in' });
   }
 
-  const { content } = req.body;
-  if (!content) {
+  const { note } = req.body;
+
+  if ((!note) || (note === '')) {
     return res
       .status(400)
       .json({ message: 'All properties must be provided to create a note' });
   }
 
-  const newNote = { user_id, content };
   notesQueries
-    .create(newNote)
+    .create(note)
     .then((note) => {
       res.status(201).json({ message: 'Note created!', note });
     })
@@ -40,14 +41,16 @@ router.post('/', (req, res) => {
 
 // Read all - GET
 router.get('/', (req, res) => {
-  let query = notesQueries.getAll();
-
+  let dbQuery = undefined;
   const { user_id } = req.query;
+
   if (user_id) {
-    query = notesQueries.getByUserId(user_id);
+    dbQuery = notesQueries.getByUserId(user_id);
+  } else {
+    dbQuery = notesQueries.getAll();
   }
 
-  query
+  dbQuery
     .then((notes) => {
       res.status(201).json({ message: 'Here all notes!', notes });
     })
@@ -78,12 +81,14 @@ router.get('/:id', (req, res) => {
 
 // Update - POST
 router.post('/:id/edit', (req, res) => {
-  const { user_id } = req.session;
-  if (!user_id) {
+  const { user } = req.session;
+
+  if (!user) {
     return res.status(401).json({ message: 'User is not logged in' });
   }
 
-  const { content } = req.body;
+  const { content, category_id } = req.body;
+
   if (!content) {
     return res
       .status(400)
@@ -91,6 +96,7 @@ router.post('/:id/edit', (req, res) => {
   }
 
   const { id } = req.params;
+
   notesQueries
     .getById(id)
     .then((note) => {
@@ -120,12 +126,14 @@ router.post('/:id/edit', (req, res) => {
 
 // Delete - POST
 router.post('/:id/delete', (req, res) => {
-  const { user_id } = req.session;
-  if (!user_id) {
+  const { user } = req.session;
+
+  if (!user) {
     return res.status(401).json({ message: 'User is not logged in' });
   }
 
   const { id } = req.params;
+
   notesQueries
     .getById(id)
     .then((note) => {
