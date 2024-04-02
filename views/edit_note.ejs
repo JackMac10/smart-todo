@@ -1,7 +1,65 @@
-EDIT NOTE
-<%= note.content %>
-<%= note.id %>
+<!-- EDIT NOTE -->
 
-<form >
+<!DOCTYPE html>
+<html lang="en">
 
-</form>
+<head>
+  <title>Notes</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+  <!-- <link rel="stylesheet" href="/vendor/border-box.css" /> -->
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="stylesheet" href="/styles/layout.css" />
+
+  <!-- Link to the separated CSS file -->
+  <link rel="stylesheet" href="/styles/myStyles.css" />
+
+  <script src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="/scripts/notes.js"></script>
+</head>
+
+<body>
+  <header class="page-header">
+    <h1>Edit</h1>
+  </header>
+
+  <main>
+
+    <form class="edit-form" action="/notes/<%= note.id %>" method="POST">
+      <label class="edit-note" for="notes"><strong>New note: </strong></label>
+      <input
+      class="form-control"
+      type="text"
+      name="text"
+      value="<%= note.content %>"
+      style="width: 300px; margin: 1em"
+      />
+      <br>
+      <div class="dropdown" >
+          <button class="dropbtn">Category dropdown</button>
+          <div class="dropdown-content">
+            <h4>Films/TV Shows</h4>
+            <h4>Books</h4>
+            <h4>Restaurants</h4>
+            <h4>Products</h4>
+            <h4>Other</h4>
+          </div>
+      </div>
+
+      <hr>
+      <div class="edit-page-btns">
+        <button class="delete-btn" type="submit">Delete Note</button>
+        <button class="edit-submit-btn" type="submit">Save Changes</button>
+        <button class="cancel-btn" type="submit">Cancel Changes</button>
+      </div>
+
+
+    </form>
+
+
+
+</body>
+</html>
