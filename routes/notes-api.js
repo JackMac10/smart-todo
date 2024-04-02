@@ -81,12 +81,14 @@ router.get('/:id', (req, res) => {
 
 // Update - POST
 router.post('/:id/edit', (req, res) => {
-  const { user_id } = req.session;
-  if (!user_id) {
+  const { user } = req.session;
+
+  if (!user) {
     return res.status(401).json({ message: 'User is not logged in' });
   }
 
-  const { content } = req.body;
+  const { content, category_id } = req.body;
+
   if (!content) {
     return res
       .status(400)
@@ -94,6 +96,7 @@ router.post('/:id/edit', (req, res) => {
   }
 
   const { id } = req.params;
+
   notesQueries
     .getById(id)
     .then((note) => {
@@ -123,12 +126,14 @@ router.post('/:id/edit', (req, res) => {
 
 // Delete - POST
 router.post('/:id/delete', (req, res) => {
-  const { user_id } = req.session;
-  if (!user_id) {
+  const { user } = req.session;
+
+  if (!user) {
     return res.status(401).json({ message: 'User is not logged in' });
   }
 
   const { id } = req.params;
+
   notesQueries
     .getById(id)
     .then((note) => {
