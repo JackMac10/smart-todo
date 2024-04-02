@@ -3,14 +3,15 @@ const express = require('express');
 const router = express.Router();
 const { getUserByEmail } = require('../db/queries/users');
 const bcrypt = require('bcrypt');
+const session = require('express-session');
 
 // GET request to render the login form
-router.get('/', (req, res) => {
+router.get('/login', (req, res) => {
   res.render('login');
 });
 
 // POST request to handle login form submission
-router.post('/', (req, res) => {
+router.post('/login', (req, res) => {
   const { email, password } = req.body;
 
   getUserByEmail(email)
@@ -30,9 +31,8 @@ router.post('/', (req, res) => {
           // Set user session
           req.session.user = user;
           console.log("USER id: ", user.id)
-          const userId = user.id;
-          // Redirect to main-page after successful login
-          res.redirect(`/notes/${userId}`);
+          // Redirect to the main page after successful login
+          res.redirect(`/notes`);
         })
         .catch(error => {
           console.error('Error comparing passwords:', error);
@@ -43,6 +43,11 @@ router.post('/', (req, res) => {
       console.error('Error retrieving user:', error);
       res.status(500).render('login', { error: 'Internal Server Error' });
     });
+});
+
+router.post('/logout', (req, res) => {
+  req.session.user = null;
+  res.redirect("/");
 });
 
 module.exports = router;

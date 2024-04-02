@@ -41,13 +41,16 @@ const userApiRoutes = require('./routes/users-api');
 const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
 // New route for login
-const loginRoutes = require('./routes/login');
+const sessionRoutes = require('./routes/sessions');
 // New route for signup
 const signupRoutes = require('./routes/signup');
 // New route for main-page
 // const mainPageRoutes = require('./routes/main-page');
 // New route for notes
+const notesApiRoutes = require('./routes/notes-api');
 const notesRoutes = require('./routes/notes');
+//New route for categories
+const categoriesApiRoutes = require('./routes/categories-api');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -56,13 +59,17 @@ app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
  // Mount login route
-app.use('/login', loginRoutes);
+app.use('/sessions', sessionRoutes);
 // Mount signup route
 app.use('/signup', signupRoutes);
 // Mount main-page route
 // app.use('/main-page', mainPageRoutes);
 // Mount notes route
+app.use('/api/notes', notesApiRoutes);
 app.use('/notes', notesRoutes);
+
+// Mount categories routes
+app.use('/api/categories', categoriesApiRoutes);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
