@@ -8,18 +8,17 @@ body {
   padding: 0;
 }
 
-.page-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: stretch;
-  background-color: inherit; //#f2f2f2
-  font-weight: bold;
-  padding: 20px;
-}
-
-.user-info {
-  text-align: left;
+//Index page
+.logo {
+  color: #466cd4;
+  font-family: "Great Vibes", cursive;
+  font-size: 110px;
+  line-height: 150px;
+  font-weight: normal;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  text-align: center;
+  text-shadow: 0 2px 2px #fff;
 }
 
 h1 {
@@ -27,7 +26,62 @@ h1 {
 }
 
 nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
   margin-top: 10px;
+  width: 600px;
+}
+
+#login-btn, #signup-btn {
+  background-color: #007bff;
+  border-color: #007bff;
+  border-style: outset;
+  color: #f1f1f1;
+  font-size: large;
+  width: 90px;
+  height: 2.5em;
+  margin-bottom: 1em;
+}
+
+#login-btn:hover,
+#signup-btn:hover {
+  background-color: #0c0fa8;
+  border-color: #0c0fa8;
+}
+
+//Notes page
+.page-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  background-color: inherit;
+  padding: 20px;
+}
+
+.user-info {
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+}
+
+.logout-btn {
+  margin-top: 1em;
+  text-align: center;
+  background-color: #007bff;
+  border-color: #007bff;
+  border-style: outset;
+  color: #f1f1f1;
+  font-size: large;
+  width: 100px;
+  height: 2.3em;
+}
+
+.logout-btn:hover {
+  background-color: rgb(226, 61, 43);
+  border-color: rgb(226, 61, 43);
+  box-shadow: 10px 15px 20px rgba(94, 35, 210, 0.187);
 }
 
 button.large {
@@ -94,36 +148,24 @@ p {
   color: #f1f1f1;
   font-size: large;
   width: 100px;
-  height: 3em;
+  height: 2.5em;
+  margin-bottom: 1em;
 }
 
 .note-btn:hover {
-  background-color: blueviolet;
-  border-color: blueviolet;
+  font-weight: bold;
+  background-color: rgb(231, 142, 18);
+  border-color: rgb(226, 150, 43);
   box-shadow: 10px 15px 20px rgba(94, 35, 210, 0.187);
 }
 
 //Edit part
-
 .form-control {
   height: 3em;
   width: 600px;
   border: none;
   margin-bottom: 2em;
-  //display: flex;
-  //flex-direction: column;
-  //justify-content: space-around;
 }
-
-
-/*.edit-submit-btn {
-  align-items: left;
-  // display: flex;
-  // flex-direction: row;
-  // justify-content:  flex-start;
-  // flex-direction: row-reverse;
-  margin-top: 2em;
-}*/
 
 .dropdown {
   position: relative;
