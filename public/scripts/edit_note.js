@@ -3,6 +3,7 @@ $(() => {
   const $categorySelect = $('#categories-select');
 
   const categoryOption = (category) => {
+    console.log("category ------> : ", category);
     return `<option value="${category.id}">${category.name}</option>`
   }
 
@@ -45,6 +46,7 @@ $(() => {
       url: `/api/notes/${this.dataset.noteId}/edit`,
       data: $('.edit-form').serialize()
     }).done(function(data) {
+
       categoryContainer(data.note.category_id).append(noteHtml(data.note));
     }).fail(function(data) {
       // TODO: Handle error

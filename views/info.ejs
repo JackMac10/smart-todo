@@ -1,0 +1,65 @@
+<!-- info.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Info</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="stylesheet" href="/styles/layout.css" />
+
+  <!-- Link to the separated CSS file -->
+  <link rel="stylesheet" href="/styles/myStyles.css" />
+
+  <script src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="/scripts/edit_note.js"></script>
+    <!-- Include the separate JavaScript file -->
+    <script src="/scripts/info.js"></script>
+
+  <style>
+    .book-list {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="page-header">
+    <h1>Info</h1>
+  </header>
+
+  <form class="edit-form" action="/notes/<%= note.id %>" method="POST">
+    <label class="edit-note" for="notes"><strong>Note Content: </strong></label>
+    <input
+      class="form-control"
+      type="text"
+      name="content"
+      value="<%= note.content %>"
+      style="width: 300px; margin: 1em"
+    />
+    <br>
+
+    <hr>
+
+  </form>
+
+  <!-- New section to display book results -->
+  <div class="book-list">
+    <h2>Category_id  # <%= note.category_id %></h2>
+    <ul id="book-results"></ul>
+  </div>
+
+  <!-- <button class="delete-btn">Delete Note</button> -->
+  <button class="back-btn">Back</button>
+
+
+</body>
+
+</html>
+
