@@ -3,7 +3,6 @@ $(() => {
   const $categorySelect = $('#categories-select');
 
   const categoryOption = (category) => {
-    console.log("category ------> : ", category);
     return `<option value="${category.id}">${category.name}</option>`
   }
 

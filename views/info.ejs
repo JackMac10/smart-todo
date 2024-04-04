@@ -49,7 +49,7 @@
 
   </form>
 
-  <!-- New section to display book results -->
+  <!-- New section to display book and other results -->
   <div class="book-list">
     <h2>Category: <%= note.name %></h2>
     <ul id="book-results"></ul>
@@ -63,7 +63,11 @@
       const categoryId = `<%= note.category_id %>`;
       const contentText = `<%- note.content %>`;
       console.log("categoryId : ", categoryId);
-      if (categoryId === `2`) {fetchBooks(contentText)}
+      if (categoryId === `2`) {
+        fetchBooks(contentText);
+      } else if (categoryId === `1`) {
+        fetchItemsForSale(contentText);
+      }
     });
 
   </script>

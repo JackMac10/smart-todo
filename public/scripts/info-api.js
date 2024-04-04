@@ -1,51 +1,37 @@
-const axios = require('axios');
+// Function to fetch items for sale asynchronously using fetch
+async function fetchItemsForSale(text) {
+  // const searchTerm = encodeURIComponent(text.trim());
 
-// Function to search for books using the Google Books API
-async function findReading(query) {
+   // text triming here
+   const searchTerm = text;
   try {
-    const response = await axios.get('https://www.googleapis.com/books/v1/volumes', {
-      params: {
-        q: query
-      }
+    const response = await fetch(`https://jsonplaceholder.typicode.com/posts?q=${searchTerm}`);
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch items for sale');
+    }
+
+    const data = await response.json();
+    const bookResults = document.getElementById('book-results');
+    // Clear existing results
+    bookResults.innerHTML = '';
+
+    items.forEach(item => {
+      const li = document.createElement('li');
+      const titleElement = document.createElement('strong');
+      titleElement.textContent = `Title: ${item.title}`;
+      li.appendChild(titleElement);
+
+      const bodyElement = document.createElement('div');
+      bodyElement.textContent = `Body: ${item.body}`;
+      li.appendChild(bodyElement);
+
+      bookResults.appendChild(li);
     });
-
-    const books = response.data.items;
-    const results = [];
-
-    books.forEach(book => {
-      const title = book.volumeInfo.title;
-      const authors = book.volumeInfo.authors;
-      const description = book.volumeInfo.description;
-      const previewLink = book.volumeInfo.previewLink;
-
-      // Check if the book has any available reading options
-      if (book.saleInfo && book.saleInfo.buyLink) {
-        const buyLink = book.saleInfo.buyLink;
-        results.push({ title, authors, description, previewLink, buyLink });
-      }
-    });
-
-    return results; // Return array of book items with reading options
   } catch (error) {
-    console.error('Error fetching books:', error);
-    return []; // Return an empty array if there's an error
+    console.error('Error fetching items for sale:', error);
+
   }
 }
 
-// Example usage
-const searchTerm = 'Node.js'; // Change this to whatever you want to search for
-findReading(searchTerm)
-  .then(books => {
-    console.log('Found books with reading options:');
-    books.forEach(book => {
-      console.log('Title:', book.title);
-      console.log('Authors:', book.authors.join(', '));
-      console.log('Description:', book.description);
-      console.log('Preview Link:', book.previewLink);
-      console.log('Buy Link:', book.buyLink);
-      console.log('---');
-    });
-  })
-  .catch(error => {
-    console.error('Error finding books:', error);
-  });
+
