@@ -100,3 +100,57 @@ async function fetchItemsForSale(searchTerm) {
 }
 
 
+async function fetchItemsToWatch(title) {
+  console.log(title)
+    const ret = title.replace('watch ','');
+    console.log(ret); 
+
+  const url = 'https://ott-details.p.rapidapi.com/search?title=' + (ret) + '&page=1';
+  console.log(ret, url)
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': '7057fe6fdbmshf171e08b662a8d0p1edd80jsn7812a80edb5b',
+      'X-RapidAPI-Host': 'ott-details.p.rapidapi.com'
+    }
+  };
+  
+  try {
+    const response = await fetch(url, options);
+    const data = await response.json();
+    const watchResults = document.getElementById('book-results');
+    watchResults.innerHTML = '';
+    
+    data.results.forEach(result => {
+      const title = result.title;
+      const genre = result.genre.join(', ');
+      const releaseYear = result.released;
+      const previewLink = 'https://www.google.com/search?q=' + (title) + ' ' + (releaseYear)
+
+      const li = document.createElement('li');
+
+      const titleElement = document.createElement('strong');
+      titleElement.textContent = `Title: ${title}`;
+      li.appendChild(titleElement);
+      console.log(`${title}`)
+
+      const genreElement = document.createElement('div');
+      genreElement.textContent = `Genre(s): ${genre}`;
+      li.appendChild(genreElement);
+
+      const releaseYearElement = document.createElement('div');
+      releaseYearElement.textContent = `Release Year: ${releaseYear}`;
+      li.appendChild(releaseYearElement);
+
+      const previewLinkElement = document.createElement('a');
+      previewLinkElement.textContent = `See more about ${title}!`;
+      previewLinkElement.href = previewLink;
+      previewLinkElement.target = '_blank';
+      li.appendChild(previewLinkElement);
+
+      watchResults.appendChild(li);
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
