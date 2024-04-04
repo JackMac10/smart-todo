@@ -17,6 +17,12 @@ router.get('/:id/edit', (req, res) => {
   notesQueries.getNote(req.params.id).then((note) => {
     res.render('edit_note', { note })
   })
+});
+
+router.get('/:id/info', (req, res) => {
+  notesQueries.getNote(req.params.id).then((note) => {
+    res.render('info', { note })
+  })
 })
 
 module.exports = router;

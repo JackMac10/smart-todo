@@ -65,6 +65,7 @@ $(() => {
       <div>
         <p class='note' data-note-id=${id}>${content}</p>
         <a href="/notes/${id}/edit">Edit</a>
+        <a href="/notes/${id}/info">Info</a>
       </div
     `
   }

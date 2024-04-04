@@ -19,7 +19,7 @@ const getAll = () => {
 };
 
 const getNote = (noteId) => {
-  return db.query('SELECT * FROM notes WHERE notes.id = $1;', [noteId])
+  return db.query('SELECT * FROM notes INNER JOIN categories ON categories.id = notes.category_id WHERE notes.id = $1;', [noteId])
     .then((data) => data.rows[0]);
 }
 
