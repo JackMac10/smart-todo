@@ -67,6 +67,12 @@
         fetchBooks(contentText);
       } else if (categoryId === `1`) {
         fetchItemsForSale(contentText);
+      }else if (categoryId === `3`) {
+        fetchItemsToWacht(contentText);
+      }else if (categoryId === `4`) {
+        fetchItemsToEat(contentText);
+      }else {
+        fetchItemsOther(contentText);
       }
     });
 

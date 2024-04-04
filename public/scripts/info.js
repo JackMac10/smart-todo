@@ -43,7 +43,7 @@ async function fetchBooks(text) {
   }
 }
 
-
+// To Buy Books
 async function fetchItemsForSale(searchTerm) {
   try {
     const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`);
@@ -98,3 +98,5 @@ async function fetchItemsForSale(searchTerm) {
     return []; // Return an empty array if there's an error
   }
 }
+
+
