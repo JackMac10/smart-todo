@@ -1,9 +1,11 @@
 // info.js
 
 // Function to fetch books asynchronously
-async function fetchBooks() {
+async function fetchBooks(text) {
+
   // Change this to whatever you want to search for
-  const searchTerm = '1984';
+  // text triming here
+  const searchTerm = text;
   try {
     const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`);
     const data = await response.json();
@@ -25,5 +27,4 @@ async function fetchBooks() {
 }
 
 // Call the fetchBooks function when the page loads
-console.log("Category -----> : ");
-window.onload = fetchBooks;
+// window.onload = fetchBooks;

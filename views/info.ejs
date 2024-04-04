@@ -51,13 +51,22 @@
 
   <!-- New section to display book results -->
   <div class="book-list">
-    <h2>Category_id  # <%= note.category_id %></h2>
+    <h2>Category: <%= note.name %></h2>
     <ul id="book-results"></ul>
   </div>
 
   <!-- <button class="delete-btn">Delete Note</button> -->
   <button class="back-btn">Back</button>
 
+  <script>
+    $(document).ready(() => {
+      const categoryId = `<%= note.category_id %>`;
+      const contentText = `<%- note.content %>`;
+      console.log("categoryId : ", categoryId);
+      if (categoryId === `2`) {fetchBooks(contentText)}
+    });
+
+  </script>
 
 </body>
 
