@@ -133,7 +133,7 @@ async function fetchItemsToWatch(title) {
 
       watchResults.appendChild(li);
       console.log("No results found");
-      return; // Exit the function if there are no results
+      return;
     }
 
     data.results.forEach(result => {
