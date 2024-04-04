@@ -121,6 +121,21 @@ async function fetchItemsToWatch(title) {
     const watchResults = document.getElementById('book-results');
     watchResults.innerHTML = '';
     
+    if (data.results.length === 0) {
+      const li = document.createElement('li');
+      const previewLink = 'https://www.google.com/search?q=' + (ret)
+
+      const previewLinkElement = document.createElement('a');
+      previewLinkElement.textContent = 'See more about ' + (ret);
+      previewLinkElement.href = previewLink;
+      previewLinkElement.target = '_blank';
+      li.appendChild(previewLinkElement);
+
+      watchResults.appendChild(li);
+      console.log("No results found");
+      return; // Exit the function if there are no results
+    }
+
     data.results.forEach(result => {
       const title = result.title;
       const genre = result.genre.join(', ');
@@ -128,6 +143,7 @@ async function fetchItemsToWatch(title) {
       const previewLink = 'https://www.google.com/search?q=' + (title) + ' ' + (releaseYear)
 
       const li = document.createElement('li');
+
 
       const titleElement = document.createElement('strong');
       titleElement.textContent = `Title: ${title}`;
