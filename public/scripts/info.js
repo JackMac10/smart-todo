@@ -100,10 +100,84 @@ async function fetchItemsForSale(searchTerm) {
 }
 
 
+// Function to search for restaurants asynchronously
+async function fetchItemsToEat(searchTerm) {
+  try {
+    const apiKey = 'd580475d80ba4a008b994009b2358eab';
+    const cuisine = searchTerm.replace(/^to\s+eat\s+/i, '');
+    // Toronto is a default location
+    const lat = 43.669814;
+    const lng = -79.399367;
+
+    // console.log("cuisine --->> : ", cuisine);
+
+    const url = `https://api.spoonacular.com/food/restaurants/search?lat=${lat}&lng=${lng}&cuisine=${cuisine}&apiKey=${apiKey}`;
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error('Failed to search for restaurants');
+    }
+
+    const data = await response.json();
+    const restaurants = data.restaurants || [];
+
+    // Get the container element where you want to display the restaurant results
+    const restaurantResultsContainer = document.getElementById('book-results');
+
+    // Clear existing results
+    restaurantResultsContainer.innerHTML = '';
+
+    restaurants.forEach(restaurant => {
+      // Check if both description and at least one photo exist
+      if (restaurant.description && restaurant.food_photos && restaurant.food_photos.length > 0) {
+        // Create elements for each restaurant
+        const li = document.createElement('li');
+        const nameElement = document.createElement('strong');
+        const addressElement = document.createElement('div');
+        const descriptionElement = document.createElement('div');
+        const foodPhotosContainer = document.createElement('div');
+
+        // Assign text content to elements
+        nameElement.textContent = `Name: ${restaurant.name}`;
+        addressElement.textContent = `Address: ${restaurant.address.street_addr}`;
+        descriptionElement.textContent = `Description: ${restaurant.description}`;
+
+        // Create image elements for food photos
+        restaurant.food_photos.forEach(photoUrl => {
+          const img = document.createElement('img');
+          img.src = photoUrl;
+          img.alt = 'Food Photo';
+          img.style.width = '150px'; // Set the width of the image
+          img.style.height = '150px'; // Set the height of the image
+          img.style.marginRight = '10px'; // Add some spacing between images
+          foodPhotosContainer.appendChild(img);
+        });
+
+        // Append elements to list item
+        li.appendChild(nameElement);
+        li.appendChild(addressElement);
+        li.appendChild(descriptionElement);
+        li.appendChild(foodPhotosContainer);
+
+        // Append list item to container
+        restaurantResultsContainer.appendChild(li);
+      }
+    });
+
+    return restaurants;
+  } catch (error) {
+    console.error('Error searching for restaurants:', error);
+    return []; // Return an empty array if there's an error
+  }
+}
+
+
+
 async function fetchItemsToWatch(title) {
   console.log(title)
     const ret = title.replace('watch ','');
-    console.log(ret); 
+    console.log(ret);
 
   const url = 'https://ott-details.p.rapidapi.com/search?title=' + (ret) + '&page=1';
   console.log(ret, url)
@@ -114,13 +188,13 @@ async function fetchItemsToWatch(title) {
       'X-RapidAPI-Host': 'ott-details.p.rapidapi.com'
     }
   };
-  
+
   try {
     const response = await fetch(url, options);
     const data = await response.json();
     const watchResults = document.getElementById('book-results');
     watchResults.innerHTML = '';
-    
+
     if (data.results.length === 0) {
       const li = document.createElement('li');
       const previewLink = 'https://www.google.com/search?q=' + (ret)
