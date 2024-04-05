@@ -32,7 +32,7 @@ const getNote = (noteId) => {
 }
 
 const deleteNote = (noteId) => {
-  return db.query('DELETE * FROM notes WHERE notes.id = $1', [noteId])
+  return db.query('DELETE FROM notes WHERE notes.id = $1', [noteId])
 }
 
 module.exports = { getAll, getNote, getByUserId, create, deleteNote, update };

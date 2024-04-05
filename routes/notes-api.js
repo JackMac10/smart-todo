@@ -138,7 +138,7 @@ router.delete('/:id/delete', (req, res) => {
         return res.status(404).json({ message: 'Note not found!' });
       }
 
-      const noteBelongsToUser = note.user_id === user_id;
+      const noteBelongsToUser = note.user_id === user.id;
       if (!noteBelongsToUser) {
         return res
           .status(401)

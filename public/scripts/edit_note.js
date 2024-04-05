@@ -29,14 +29,12 @@ $(() => {
   $('.delete-btn').click(function(event) {
     event.preventDefault()
 
-    const noteId = this.dataset.noteId;
-
     $.ajax({
       method: 'DELETE',
-      url: `/api/notes/${noteId}/delete`
+      url: `/api/notes/${this.dataset.noteId}/delete`
     }).done(function(_data) {
-      window.location.href = `/notes/${noteId}/edit`
-    }).fail(function(data) {
+      window.location.href = `/notes`
+    }).fail(function(_data) {
       alert("Request failed");
     });
   });
