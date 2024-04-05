@@ -37,18 +37,23 @@
     />
     <br>
     <div class="category-dropdown">
-      <label for="categories-select">Choose a Category:</label>
+      <label for="categories-select"><strong>Choose a Category: </strong></label>
       <select id="categories-select" name="category_id" data-current-category-id="<%= note.category_id %>"></select>
     </div>
+    <br>
 
     <hr>
 
     <div class="edit-page-btns">
       <button class="cancel-btn">Cancel Changes</button>
       <button data-note-id="<%= note.id %>" class="edit-submit-btn" type="submit">Save Changes</button>
+
+      <button data-note-id="<%= note.id %>" class="delete-btn">Delete Note</button>
+
+
     </div>
   </form>
-  <button data-note-id="<%= note.id %>" class="delete-btn">Delete Note</button>
-  <button class="back-btn">Back</button>
+    <br>
+    <button class="back-btn">Back</button>
 </body>
 </html>
