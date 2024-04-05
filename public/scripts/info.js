@@ -103,7 +103,8 @@ async function fetchItemsForSale(searchTerm) {
 // Function to search for restaurants asynchronously
 async function fetchItemsToEat(searchTerm) {
   try {
-    const apiKey = 'd580475d80ba4a008b994009b2358eab';
+    // const apiKey = 'd580475d80ba4a008b994009b2358eab';
+    const apiKey = '45f8d672cd044bd191139e918b0dbcc6';
     const cuisine = searchTerm.replace(/^to\s+eat\s+/i, '');
     // Toronto is a default location
     const lat = 43.669814;
@@ -173,11 +174,16 @@ async function fetchItemsToEat(searchTerm) {
 }
 
 
-
+// Function to search for 'to Wath' category asynchronously
 async function fetchItemsToWatch(title) {
-  console.log(title)
-    const ret = title.replace('watch ','');
-    console.log(ret);
+  // console.log(title)
+  //   const ret = title.replace('watch ','');
+  //   console.log(ret);
+
+  console.log("title; ", title);
+  title = title.replace('watch ', '');
+  const ret = title.replace('to', '');
+  console.log(ret);
 
   const url = 'https://ott-details.p.rapidapi.com/search?title=' + (ret) + '&page=1';
   console.log(ret, url)
@@ -244,3 +250,31 @@ async function fetchItemsToWatch(title) {
     console.error(error);
   }
 };
+
+
+// // Function to handle Other category asynchronously
+
+async function fetchItemsOther(title) {
+
+  try {
+
+    const watchResults = document.getElementById('book-results');
+    watchResults.innerHTML = '';
+
+      const li = document.createElement('li');
+      const previewLink = 'https://www.google.com/search?q=' + (title)
+
+      const previewLinkElement = document.createElement('a');
+      previewLinkElement.textContent = 'See more about ' + (title);
+      previewLinkElement.href = previewLink;
+      previewLinkElement.target = '_blank';
+      li.appendChild(previewLinkElement);
+
+      watchResults.appendChild(li);
+      console.log("No results found");
+
+  } catch (error) {
+    console.error(error);
+  }
+};
+
