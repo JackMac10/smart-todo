@@ -28,7 +28,7 @@ INSERT INTO notes (user_id, content, category_id) VALUES (2, 'to watch a nature 
 INSERT INTO notes (user_id, content, category_id) VALUES (1, 'to buy a birthday card', 1);
 INSERT INTO notes (user_id, content, category_id) VALUES (2, 'to read "Pride and Prejudice"', 2);
 INSERT INTO notes (user_id, content, category_id) VALUES (1, 'to eat sushi rolls', 4);
-INSERT INTO notes (user_id, content, category_id) VALUES (3, 'to watch a TEDx talk', 3);
+INSERT INTO notes (user_id, content, category_id) VALUES (3, 'to watch Seinfeld', 3);
 INSERT INTO notes (user_id, content, category_id) VALUES (1, 'to buy flowers', 1);
 INSERT INTO notes (user_id, content, category_id) VALUES (2, 'to read "The Hobbit"', 2);
 INSERT INTO notes (user_id, content, category_id) VALUES (3, 'to eat Pizza', 4);
@@ -36,7 +36,10 @@ INSERT INTO notes (user_id, content, category_id) VALUES (2, 'to watch a cooking
 INSERT INTO notes (user_id, content, category_id) VALUES (1, 'to buy a new laptop', 1);
 INSERT INTO notes (user_id, content, category_id) VALUES (1, 'to read "The Hitchhikers Guide to the Galaxy', 2);
 INSERT INTO notes (user_id, content, category_id) VALUES (3, 'to eat Mexican', 4);
-INSERT INTO notes (user_id, content, category_id) VALUES (2, 'to watch a classic film noir', 3);
+INSERT INTO notes (user_id, content, category_id) VALUES (3, 'to watch RED', 3);
 INSERT INTO notes (user_id, content, category_id) VALUES (3, 'to buy a new journal', 1);
 INSERT INTO notes (user_id, content, category_id) VALUES (3, 'to read "The Alchemist"', 2);
 INSERT INTO notes (user_id, content, category_id) VALUES (1, 'to eat Korean', 4);
+
+INSERT INTO notes (user_id, content, category_id) VALUES (3, 'to learn French', 5);
+INSERT INTO notes (user_id, content, category_id) VALUES (3, 'what to do with old bike', 5);
