@@ -25,12 +25,14 @@
   <header class="page-header">
     <!-- Display user's name in the top right corner -->
     <div class="user-info">
-      Welcome, <%= user.email %> <!-- Display user's name here -->
+      Welcome,&nbsp;&nbsp;&nbsp;<%= user.email %> <!-- Display user's name here -->
+      <form action="/sessions/logout" method="post">
+        <input class="logout-btn" type="submit" value="logout"/>
+      </form>
     </div>
+
     <!-- Logout -->
-    <form action="/sessions/logout" method="post">
-      <input type="submit" value="Logout"/>
-    </form>
+
   </header>
 
   <main>

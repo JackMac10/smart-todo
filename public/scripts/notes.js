@@ -44,7 +44,7 @@ $(() => {
     }).done(function(data) {
       categoryContainer(data.note.category_id).append(noteHtml(data.note));
     }).fail(function(data) {
-      // TODO: Handle error
+      alert("Request failed");
     });
   });
 
@@ -65,6 +65,7 @@ $(() => {
       <div>
         <p class='note' data-note-id=${id}>${content}</p>
         <a href="/notes/${id}/edit">Edit</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;
         <a href="/notes/${id}/info">Info</a>
       </div
     `
@@ -83,7 +84,7 @@ $(() => {
         categoryContainer(note.category_id).append(noteHtml(note));
       }
     }).fail(function(data) {
-      // TODO: Handle error
+      alert("Request failed");
     });
   }
 
@@ -102,7 +103,7 @@ $(() => {
 
       loadNotes();
     }).fail(function(data) {
-      // TODO: Handle error
+      alert("Request failed");
     });
   }
 

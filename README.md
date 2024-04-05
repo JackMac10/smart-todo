@@ -1,5 +1,22 @@
-LHL Node Skeleton
+Smart TODO List
 =========
+
+## Overview
+
+When you are recommended something it's not always easy to jot it down for later in an organized fashion. Adding the item to your phone or computer ends up taking time and opening up the right app is only part of the problem. You then have to locate the right list ("Movies to watch", "Books to read", etc.) to add to. And if you do get it in to the right list, you don't have much more context about it. This delay and lack of additional information acts as a huge deterrent.
+
+The solution? A smart, auto-categorizing todo list app. The user simply has to add the name of the thing, and it gets put into the correct list.
+
+The Smart TODO List has five (5) list categories:
+- Film / Series (To watch)
+- Restaurants, cafes, etc. (To eat)
+- Books (To read)
+- Products (To buy)
+- Others
+
+In order to determine the category the app we need to use various API services.
+
+Users can manually change the category of an item in case it was mis-categorized or could not be categorized at all.
 
 ## Project Setup
 
@@ -44,3 +61,13 @@ The following steps are only for _one_ of the group members to perform.
 - Node 10.x or above
 - NPM 5.x or above
 - PG 6.x
+- axios
+- bcrypt
+- chalk
+- express
+- express-session
+- Express JS
+- morgan
+- sass
+- dotenv
+- nodemon

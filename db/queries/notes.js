@@ -8,6 +8,14 @@ const create = (note) => {
   return db.query(queryText, values).then(result => result.rows[0]);
 };
 
+const update = (note) => {
+  const queryText = 'UPDATE notes SET content = $1, category_id = $2 WHERE id = $3 RETURNING *';
+  const values = [note.content, note.categoryId, note.id];
+  return db.query(queryText, values).then((result) => {
+    result.rows[0]
+  })
+}
+
 const getByUserId = (userId) => {
   return db
     .query('SELECT * FROM notes WHERE user_id = $1;', [userId])
@@ -19,8 +27,12 @@ const getAll = () => {
 };
 
 const getNote = (noteId) => {
-  return db.query('SELECT * FROM notes INNER JOIN categories ON categories.id = notes.category_id WHERE notes.id = $1;', [noteId])
+  return db.query('SELECT notes.* FROM notes INNER JOIN categories ON categories.id = notes.category_id WHERE notes.id = $1;', [noteId])
     .then((data) => data.rows[0]);
 }
 
-module.exports = { getAll, getNote, getByUserId, create };
+const deleteNote = (noteId) => {
+  return db.query('DELETE FROM notes WHERE notes.id = $1', [noteId])
+}
+
+module.exports = { getAll, getNote, getByUserId, create, deleteNote, update };

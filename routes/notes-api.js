@@ -64,7 +64,7 @@ router.get('/', (req, res) => {
 // Read one - GET
 router.get('/:id', (req, res) => {
   notesQueries
-    .getById(req.params.id)
+    .getNote(req.params.id)
     .then((note) => {
       if (!note) {
         return res.status(400).json({ message: 'Note not found!' });
@@ -80,42 +80,39 @@ router.get('/:id', (req, res) => {
 });
 
 // Update - POST
-router.post('/:id/edit', (req, res) => {
+router.post('/:id', (req, res) => {
   const { user } = req.session;
+  const updatedNote = req.body;
 
   if (!user) {
     return res.status(401).json({ message: 'User is not logged in' });
   }
 
-  const { content, category_id } = req.body;
-
-  if (!content) {
+  if (!updatedNote.content) {
     return res
       .status(400)
       .json({ message: 'All properties must be provided to update a note' });
   }
 
-  const { id } = req.params;
-
   notesQueries
-    .getById(id)
+    .getNote(updatedNote.id)
     .then((note) => {
       if (!note) {
         return res.status(404).json({ message: 'Note not found!' });
       }
 
-      console.log(note);
-      const noteBelongsToUser = note.user_id === user_id;
+      const noteBelongsToUser = note.user_id === user.id;
+
       if (!noteBelongsToUser) {
         return res
           .status(401)
           .json({ message: 'Note does not belongs to you!' });
       }
 
-      return notesQueries.update({ id, content });
+      return notesQueries.update(updatedNote);
     })
-    .then((updatedNote) => {
-      res.status(201).json({ message: 'Note updated!', note: updatedNote });
+    .then((note) => {
+      res.status(201).json({ message: 'Note updated!', note: note });
     })
     .catch((err) => {
       res
@@ -125,7 +122,7 @@ router.post('/:id/edit', (req, res) => {
 });
 
 // Delete - POST
-router.post('/:id/delete', (req, res) => {
+router.delete('/:id/delete', (req, res) => {
   const { user } = req.session;
 
   if (!user) {
@@ -135,20 +132,20 @@ router.post('/:id/delete', (req, res) => {
   const { id } = req.params;
 
   notesQueries
-    .getById(id)
+    .getNote(id)
     .then((note) => {
       if (!note) {
         return res.status(404).json({ message: 'Note not found!' });
       }
 
-      const noteBelongsToUser = note.user_id === user_id;
+      const noteBelongsToUser = note.user_id === user.id;
       if (!noteBelongsToUser) {
         return res
           .status(401)
           .json({ message: 'Note does not belongs to you!' });
       }
 
-      return notesQueries.remove(id);
+      return notesQueries.deleteNote(id);
     })
     .then(() => {
       res.status(204).json();
