@@ -1,7 +1,7 @@
 // queries/users.js
 
 const db = require('../connection');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 // Function to add a new user to the database
 const addUser = (name, email, password) => {

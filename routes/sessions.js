@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const { getUserByEmail } = require('../db/queries/users');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const session = require('express-session');
 
 // GET request to render the login form

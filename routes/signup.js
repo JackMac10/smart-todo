@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const { addUser, getUserByEmail } = require('../db/queries/users');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const saltRounds = 10
 
 // GET request to render the signup form
