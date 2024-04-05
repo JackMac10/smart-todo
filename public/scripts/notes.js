@@ -44,7 +44,7 @@ $(() => {
     }).done(function(data) {
       categoryContainer(data.note.category_id).append(noteHtml(data.note));
     }).fail(function(data) {
-      // TODO: Handle error
+      alert("Request failed");
     });
   });
 
@@ -84,7 +84,7 @@ $(() => {
         categoryContainer(note.category_id).append(noteHtml(note));
       }
     }).fail(function(data) {
-      // TODO: Handle error
+      alert("Request failed");
     });
   }
 
@@ -103,7 +103,7 @@ $(() => {
 
       loadNotes();
     }).fail(function(data) {
-      // TODO: Handle error
+      alert("Request failed");
     });
   }
 
