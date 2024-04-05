@@ -110,7 +110,6 @@ async function fetchItemsToEat(searchTerm) {
     const lat = 43.669814;
     const lng = -79.399367;
 
-    // console.log("cuisine --->> : ", cuisine);
 
     const url = `https://api.spoonacular.com/food/restaurants/search?lat=${lat}&lng=${lng}&cuisine=${cuisine}&apiKey=${apiKey}`;
 
@@ -176,9 +175,6 @@ async function fetchItemsToEat(searchTerm) {
 
 // Function to search for 'to Wath' category asynchronously
 async function fetchItemsToWatch(title) {
-  // console.log(title)
-  //   const ret = title.replace('watch ','');
-  //   console.log(ret);
 
   console.log("title; ", title);
   title = title.replace('watch ', '');
