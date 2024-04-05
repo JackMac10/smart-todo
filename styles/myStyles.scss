@@ -11,8 +11,8 @@ body {
 //Index page
 .logo {
   color: #466cd4;
-  font-family: "Great Vibes", cursive;
-  font-size: 110px;
+  font-family: American Typewriter, serif;
+  font-size: 80px;
   line-height: 150px;
   font-weight: normal;
   margin-bottom: 0px;
@@ -30,7 +30,7 @@ nav {
   flex-direction: row;
   justify-content: space-evenly;
   margin-top: 10px;
-  width: 600px;
+  width: 500px;
 }
 
 #login-btn, #signup-btn {
@@ -155,8 +155,8 @@ p {
 
 .note-btn:hover {
   font-weight: bold;
-  background-color: rgb(231, 142, 18);
-  border-color: rgb(226, 150, 43);
+  background-color: #0c0fa8;;
+  border-color: #0c0fa8;;
   box-shadow: 10px 15px 20px rgba(94, 35, 210, 0.187);
 }
 
@@ -166,6 +166,11 @@ p {
   width: 600px;
   border: none;
   margin-bottom: 2em;
+}
+
+#categories-select {
+  height: 3em;
+  width: 233px;
 }
 
 .dropdown {
@@ -212,8 +217,18 @@ p {
   justify-content: space-between;
   margin-top: 2em;
   height: 3em;
+  width: 400px;
 }
 
+.back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-color: black;
+  background-color: inherit;
+  height: 3em;
+  width: 80px;
+}
 .delete-btn {
   background-color: red;
   color: white;
