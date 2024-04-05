@@ -174,144 +174,73 @@ async function fetchItemsToEat(searchTerm) {
 
 
 
+async function fetchItemsToWatch(title) {
+  console.log(title)
+    const ret = title.replace('watch ','');
+    console.log(ret);
+
+  const url = 'https://ott-details.p.rapidapi.com/search?title=' + (ret) + '&page=1';
+  console.log(ret, url)
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': '7057fe6fdbmshf171e08b662a8d0p1edd80jsn7812a80edb5b',
+      'X-RapidAPI-Host': 'ott-details.p.rapidapi.com'
+    }
+  };
+
+  try {
+    const response = await fetch(url, options);
+    const data = await response.json();
+    const watchResults = document.getElementById('book-results');
+    watchResults.innerHTML = '';
+
+    if (data.results.length === 0) {
+      const li = document.createElement('li');
+      const previewLink = 'https://www.google.com/search?q=' + (ret)
+
+      const previewLinkElement = document.createElement('a');
+      previewLinkElement.textContent = 'See more about ' + (ret);
+      previewLinkElement.href = previewLink;
+      previewLinkElement.target = '_blank';
+      li.appendChild(previewLinkElement);
+
+      watchResults.appendChild(li);
+      console.log("No results found");
+      return;
+    }
+
+    data.results.forEach(result => {
+      const title = result.title;
+      const genre = result.genre.join(', ');
+      const releaseYear = result.released;
+      const previewLink = 'https://www.google.com/search?q=' + (title) + ' ' + (releaseYear)
+
+      const li = document.createElement('li');
 
 
+      const titleElement = document.createElement('strong');
+      titleElement.textContent = `Title: ${title}`;
+      li.appendChild(titleElement);
+      console.log(`${title}`)
 
+      const genreElement = document.createElement('div');
+      genreElement.textContent = `Genre(s): ${genre}`;
+      li.appendChild(genreElement);
 
-//  ----------------------------- - - - -old- - - - -
+      const releaseYearElement = document.createElement('div');
+      releaseYearElement.textContent = `Release Year: ${releaseYear}`;
+      li.appendChild(releaseYearElement);
 
-// // Function to search for restaurants asynchronously
-// async function fetchItemsToEat(searchTerm) {
-//   try {
-//     const apiKey = 'd580475d80ba4a008b994009b2358eab';
-//     const cuisine = 'italian'; // Change this to your desired query
-//     const lat = 43.669814;
-//     const lng = -79.399367;
+      const previewLinkElement = document.createElement('a');
+      previewLinkElement.textContent = `See more about ${title}!`;
+      previewLinkElement.href = previewLink;
+      previewLinkElement.target = '_blank';
+      li.appendChild(previewLinkElement);
 
-//     const url = `https://api.spoonacular.com/food/restaurants/search?lat=${lat}&lng=${lng}&cuisine=${cuisine}&apiKey=${apiKey}`;
-
-//     const response = await fetch(url);
-
-//     if (!response.ok) {
-//       throw new Error('Failed to search for restaurants');
-//     }
-
-//     const data = await response.json();
-//     const restaurants = data.restaurants || [];
-
-//     console.log("restaurants --->> : ", restaurants[0].name);
-//     console.log("restaurants --->> : ", restaurants[0].address.street_addr);
-//     console.log("restaurants --->> : ", restaurants[0].description);
-//     console.log("restaurants --->> : ", restaurants[0].logo_photos);
-
-//     // Get the container element where you want to display the restaurant results
-//     const restaurantResultsContainer = document.getElementById('book-results');
-
-//     // Clear existing results
-//     restaurantResultsContainer.innerHTML = '';
-
-//     restaurants.forEach(restaurant => {
-//       // Create elements for each restaurant
-//       const li = document.createElement('li');
-//       const nameElement = document.createElement('strong');
-//       const addressElement = document.createElement('div');
-//       const descriptionElement = document.createElement('div');
-//       const foodPhotosElement = document.createElement('div');
-
-
-
-//       // Assign text content to elements
-//       nameElement.textContent = `Name: ${restaurant.name}`;
-//       addressElement.textContent = `Address: ${restaurant.address.street_addr}`;
-//       descriptionElement.textContent = `Description: ${restaurant.description}`;
-//       foodPhotosElement.textContent = `Food Photo: ${restaurant.food_photos}`
-
-//       // Append elements to list item
-//       li.appendChild(nameElement);
-//       li.appendChild(addressElement);
-//       li.appendChild(descriptionElement);
-
-//       // Append list item to container
-//       restaurantResultsContainer.appendChild(li);
-//     });
-
-//     return restaurants;
-//   } catch (error) {
-//     console.error('Error searching for restaurants:', error);
-//     return []; // Return an empty array if there's an error
-//   }
-// }
-
-//  ------------------------------------------------------older ---------------
-
-// // Function to search for restaurants asynchronously
-// async function fetchItemsToEat(searchTerm) {
-//   try {
-//     const apiKey = 'd580475d80ba4a008b994009b2358eab';
-//     const cuisine = 'italian'; // Change this to your desired query
-//     const lat = 43.669814;
-//     const lng = -79.399367;
-
-//     const url = `https://api.spoonacular.com/food/restaurants/search?lat=${lat}&lng=${lng}&cuisine=${cuisine}&apiKey=${apiKey}`;
-
-//     const response = await fetch(url);
-
-//     if (!response.ok) {
-//       throw new Error('Failed to search for restaurants');
-//     }
-
-//     const data = await response.json();
-//     const restaurants = data.restaurants || [];
-//     console.log("restaurants --->> : ", restaurants[0].name);
-//     console.log("restaurants --->> : ", restaurants[0].address.street_addr);
-//     console.log("restaurants --->> : ", restaurants[0].description);
-//     console.log("restaurants --->> : ", restaurants[0].food_photos);
-
-//     const restaurantResults = document.getElementById('restaurant-results');
-//     restaurantResults.innerHTML = '';
-
-//     restaurants.forEach(restaurant => {
-//       const li = document.createElement('li');
-//       const nameElement = document.createElement('strong');
-//       nameElement.textContent = `Name: ${restaurant.name}`;
-//       li.appendChild(nameElement);
-
-//       const phoneElement = document.createElement('div');
-//       phoneElement.textContent = `Phone Number: ${restaurant.phone_number}`;
-//       li.appendChild(phoneElement);
-
-//       const addressElement = document.createElement('div');
-//       addressElement.textContent = `Address: ${restaurant.address.street_addr}, ${restaurant.address.city}, ${restaurant.address.state} ${restaurant.address.zipcode}, ${restaurant.address.country}`;
-//       li.appendChild(addressElement);
-
-//       const descriptionElement = document.createElement('div');
-//       descriptionElement.textContent = `Description: ${restaurant.description}`;
-//       li.appendChild(descriptionElement);
-
-//       const cuisinesElement = document.createElement('div');
-//       cuisinesElement.textContent = `Cuisines: ${restaurant.cuisines.join(', ')}`;
-//       li.appendChild(cuisinesElement);
-
-//       restaurantResults.appendChild(li);
-//     });
-
-//     return restaurants;
-//   } catch (error) {
-//     console.error('Error searching for restaurants:', error);
-//     return []; // Return an empty array if there's an error
-//   }
-// }
-
-// // // Example usage
-// // const query = 'italian'; // Change this to your desired query
-// // const lat = 43.669814;
-// // const lng = -79.399367;
-
-// // fetchItemsToEat(query, lat, lng)
-// //   .then(restaurants => {
-// //     console.log('Found restaurants:', restaurants);
-// //   })
-// //   .catch(error => {
-// //     console.error('Error searching for restaurants:', error);
-// //   });
-
+      watchResults.appendChild(li);
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
