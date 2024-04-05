@@ -62,7 +62,6 @@
     $(document).ready(() => {
       const categoryId = `<%= note.category_id %>`;
       const contentText = `<%- note.content %>`;
-      console.log("categoryId : ", categoryId);
       if (categoryId === `2`) {
         fetchBooks(contentText);
       } else if (categoryId === `1`) {

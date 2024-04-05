@@ -176,13 +176,13 @@ async function fetchItemsToEat(searchTerm) {
 // Function to search for 'to Wath' category asynchronously
 async function fetchItemsToWatch(title) {
 
-  console.log("title; ", title);
+
   title = title.replace('watch ', '');
   const ret = title.replace('to', '');
-  console.log(ret);
+
 
   const url = 'https://ott-details.p.rapidapi.com/search?title=' + (ret) + '&page=1';
-  console.log(ret, url)
+
   const options = {
     method: 'GET',
     headers: {
@@ -208,7 +208,6 @@ async function fetchItemsToWatch(title) {
       li.appendChild(previewLinkElement);
 
       watchResults.appendChild(li);
-      console.log("No results found");
       return;
     }
 
@@ -224,7 +223,6 @@ async function fetchItemsToWatch(title) {
       const titleElement = document.createElement('strong');
       titleElement.textContent = `Title: ${title}`;
       li.appendChild(titleElement);
-      console.log(`${title}`)
 
       const genreElement = document.createElement('div');
       genreElement.textContent = `Genre(s): ${genre}`;
@@ -267,7 +265,6 @@ async function fetchItemsOther(title) {
       li.appendChild(previewLinkElement);
 
       watchResults.appendChild(li);
-      console.log("No results found");
 
   } catch (error) {
     console.error(error);

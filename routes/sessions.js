@@ -30,7 +30,6 @@ router.post('/login', (req, res) => {
 
           // Set user session
           req.session.user = user;
-          console.log("USER id: ", user.id)
           // Redirect to the main page after successful login
           res.redirect(`/notes`);
         })

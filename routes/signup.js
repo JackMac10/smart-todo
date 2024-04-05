@@ -14,7 +14,6 @@ router.get('/', (req, res) => {
 // POST request to handle signup form submission
 router.post('/', (req, res) => {
   const { name, email, password } = req.body;
-  console.log("body ----> : ", req.body);
 
   getUserByEmail(email)
     .then(existingUser => {
