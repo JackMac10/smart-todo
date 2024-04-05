@@ -21,7 +21,15 @@ router.get('/:id/edit', (req, res) => {
 
 router.get('/:id/info', (req, res) => {
   notesQueries.getNote(req.params.id).then((note) => {
-    res.render('info', { note })
+    const category = {
+      1: "Products",
+      2: "Books",
+      3: "Films/TV Shows",
+      4: "Restaurants",
+      5: "Other"
+    }
+    const currentCategory = category[note["category_id"]] || "";
+    res.render('info', { note, currentCategory })
   })
 })
 

@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="/styles/myStyles.css" />
 
   <script src="/vendor/jquery-3.0.0.js"></script>
-  <script defer src="/scripts/edit_note.js"></script>
+  <!-- <script defer src="/scripts/edit_note.js"></script> -->
     <!-- Include the separate JavaScript file -->
     <script src="/scripts/info.js"></script>
 
@@ -51,7 +51,8 @@
 
   <!-- New section to display book and other results -->
   <div class="book-list">
-    <h2>Category: <%= note.name %></h2>
+  <%console.log(note)%>
+    <h2>Category: <%= currentCategory %> </h2>
     <ul id="book-results"></ul>
   </div>
 

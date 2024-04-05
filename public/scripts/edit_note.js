@@ -4,6 +4,7 @@ $(() => {
   const currentCategoryId = $categorySelect[0].dataset.currentCategoryId;
 
   const categoryOption = (category) => {
+    console.log("Category: -->>  ", category);
     if (category.id == currentCategoryId) {
       return `<option value="${category.id}" selected>${category.name}</option>`
     } else {
@@ -17,7 +18,7 @@ $(() => {
       url: `/api/categories`,
     }).done(function(data) {
       $categorySelect.empty();
-
+      console.log("Categories: -->>  ", data.categories);
       for (let category of data.categories) {
         $categorySelect.append(categoryOption(category))
       }

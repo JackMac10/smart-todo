@@ -1,8 +1,20 @@
 // info.js
 
+function handleBackButtonClick(event) {
+  event.preventDefault();
+  window.location.href = '/notes';
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  var backButton = document.querySelector('.back-btn');
+  if (backButton) {
+    backButton.addEventListener('click', handleBackButtonClick);
+  }
+});
+
+
 // Function to fetch books asynchronously
 async function fetchBooks(text) {
-
 
   // text triming here
   const searchTerm = text;
@@ -270,4 +282,7 @@ async function fetchItemsOther(title) {
     console.error(error);
   }
 };
+
+
+
 
