@@ -43,6 +43,7 @@ $(() => {
       data: { note: newNote }
     }).done(function(data) {
       categoryContainer(data.note.category_id).append(noteHtml(data.note));
+      $('.note-textfield').val('');
     }).fail(function(data) {
       alert("Request failed");
     });
