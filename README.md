@@ -18,7 +18,7 @@ In order to determine the category the app we need to use various API services.
 
 Users can manually change the category of an item in case it was mis-categorized or could not be categorized at all.
 
-## Project Setup
+## Project Setup  
 
 The following steps are only for _one_ of the group members to perform.
 
